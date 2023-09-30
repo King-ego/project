@@ -6,6 +6,6 @@ const App: FC = () => {
     useEffect(() => {
         api.get("/").then((res) => console.log(res)).catch((err) => console.error(err))
     }, [])
-    return <div>Ola</div>
+    return <div>Ola 1</div>
 }
 export default App
