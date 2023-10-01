@@ -1,12 +1,8 @@
-import {FC, useEffect} from 'react';
-import api from "./services/api.ts";
+import {FC} from 'react';
 import Provider from "./provider";
 
 
 const App: FC = () => {
-    useEffect(() => {
-        api.get("/").then((res) => console.log(res)).catch((err) => console.error(err))
-    }, []);
-    return <Provider>56</Provider>
+    return <Provider />
 }
 export default App

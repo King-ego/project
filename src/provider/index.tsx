@@ -1,13 +1,13 @@
 import {FC} from "react";
-import IChildren from "../interface/IChildren.ts";
 import ThemeProvider from "./ThemeProvider.tsx";
 import ReduxProvider from "./ReduxProvider.tsx";
+import RouterProvider from "./RouterProvider.tsx";
 
-const Provider: FC<IChildren> = ({children}) => {
+const Provider: FC = () => {
     return (
         <ReduxProvider>
             <ThemeProvider>
-                {children}
+                <RouterProvider />
             </ThemeProvider>
         </ReduxProvider>
     )

@@ -1,15 +1,19 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import test from "./reducer/test";
+import theme from "./reducer/theme";
 
 const store = configureStore({
-    reducer: {test: test}
+    reducer: {
+        test: test,
+        theme: theme
+    }
 })
 
-store.subscribe(()=> console.log(store.getState()))
+/*store.subscribe(()=> console.log(store.getState()))*/
 
 const rootReducer = combineReducers({
     test: test,
-    // Outros reducers...
+    theme: theme
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
