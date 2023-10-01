@@ -1,12 +1,15 @@
 import {FC} from "react";
 import IChildren from "../interface/IChildren.ts";
 import ThemeProvider from "./ThemeProvider.tsx";
+import ReduxProvider from "./ReduxProvider.tsx";
 
-const Provider:FC<IChildren> = ({children}) => {
+const Provider: FC<IChildren> = ({children}) => {
     return (
-        <ThemeProvider>
-            {children}
-        </ThemeProvider>
+        <ReduxProvider>
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
+        </ReduxProvider>
     )
 }
 
