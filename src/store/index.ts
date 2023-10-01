@@ -1,10 +1,8 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import test from "./reducer/test";
 import theme from "./reducer/theme";
 
 const store = configureStore({
     reducer: {
-        test: test,
         theme: theme
     }
 })
@@ -12,7 +10,6 @@ const store = configureStore({
 /*store.subscribe(()=> console.log(store.getState()))*/
 
 const rootReducer = combineReducers({
-    test: test,
     theme: theme
 });
 

@@ -1,14 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
 import initialState from "./initialState";
-import reducers from "./reducers.ts";
+import reducers from "./reducers";
 
 
-const index = createSlice({
+const theme = createSlice({
     name: "theme",
     initialState,
     reducers,
 });
 
-export const {switchTheme} = index.actions;
+/*export const {switchTheme} = index.actions;*/
 
-export default index.reducer;
+export default theme.reducer;

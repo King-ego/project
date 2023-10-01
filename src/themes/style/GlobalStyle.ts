@@ -7,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color: ${({theme})=> theme.color};
+    background-color: ${({theme})=> theme.background};
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -30,8 +30,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     display: flex;
     place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
   }
 
   h1 {

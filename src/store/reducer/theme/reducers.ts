@@ -1,4 +1,3 @@
-
 import {ThemeState} from "./initialState";
 
 const reducers = {
