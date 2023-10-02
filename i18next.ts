@@ -14,7 +14,7 @@ import Backend from 'i18next-http-backend';
     }
 };*/
 
-await i18n
+i18n
     .use(Backend) // Adicione o backend para carregar traduções a partir de arquivos JSON
     .use(initReactI18next)
     .init({

@@ -1,6 +1,6 @@
 import {Provider} from "react-redux";
 import {FC} from "react";
-import IChildren from "../interface/IChildren.ts";
+import IChildren from "../interface/IChildren";
 import store from "../store";
 
 const ReduxProvider: FC<IChildren> = ({children}) => {

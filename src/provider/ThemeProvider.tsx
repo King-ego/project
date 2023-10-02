@@ -1,7 +1,7 @@
 import { ThemeProvider as Provider } from "styled-components"
-import Theme from "../themes/GlobalTheme.ts";
+import Theme from "../themes/GlobalTheme";
 import {FC, useEffect} from "react";
-import IChildren from "../interface/IChildren.ts";
+import IChildren from "../interface/IChildren";
 import GlobalStyle from "../themes/style/GlobalStyle.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store"

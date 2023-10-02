@@ -12,7 +12,7 @@ const TranslationProvider:FC<IChildren> = ({children}) => {
         dispatch({type:"translation/getLang"})
     }, [dispatch]);
     useEffect (()=> {
-        i18n.changeLanguage(lang).then((e)=> console.log(e));
+        i18n.changeLanguage(lang).then(()=> console.log("✌"));
     },[lang, i18n])
     return (<>{children}</>)
 }
