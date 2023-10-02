@@ -5,7 +5,10 @@ const Theme = {
         color: "#fff",
         button: {
             background: "#fff",
-            color: "#ff0000",
+            color: "#000",
+        },
+        link: {
+            color: "#646cff"
         }
     },
     light: {
@@ -13,7 +16,10 @@ const Theme = {
         color: "#000",
         button: {
             background: "#000",
-            color: "#e7ad4e",
+            color: "#fff",
+        },
+        link: {
+            color: "#0d1dfd"
         }
     }
 }

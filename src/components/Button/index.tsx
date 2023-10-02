@@ -1,7 +1,7 @@
-import {FC} from "react";
+import { FC } from "react";
 import IChildren from "../../interface/IChildren";
-import {ButtonStyled} from "./styled";
-import { useDispatch} from "react-redux";
+import { ButtonStyled } from "./styled";
+import { useDispatch } from "react-redux";
 
 
 const Button:FC<IChildren> = ({children}) => {

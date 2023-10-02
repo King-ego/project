@@ -17,9 +17,9 @@ const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
   }
 
-  a {
+  a { 
     font-weight: 500;
-    color: #646cff;
+    color: ${({theme}) => theme.link.color};
     text-decoration: inherit;
   }
   a:hover {
