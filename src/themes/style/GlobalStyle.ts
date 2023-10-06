@@ -3,9 +3,6 @@ import {createGlobalStyle} from "styled-components";
 const GlobalStyle = createGlobalStyle`
   :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-
     color-scheme: light dark;
     color: ${({theme})=> theme.color};
     background-color: ${({theme})=> theme.background};
@@ -26,10 +23,10 @@ const GlobalStyle = createGlobalStyle`
     color: #535bf2;
   }
 
-  body {
+  * {
     margin: 0;
-    display: flex;
-    place-items: center;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   h1 {

@@ -9,9 +9,9 @@ const reducers = {
     getLang: (state: ThemeState) => {
         const existTheme = localStorage.getItem("lang");
         if (existTheme) {
-            state.lang = existTheme as unknown as string
+            state.lang = existTheme;
         } else {
-            localStorage.setItem("lang", "pt-BR")
+            localStorage.setItem("lang", "pt-BR");
         }
 
     }
