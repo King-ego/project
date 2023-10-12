@@ -23,6 +23,12 @@ export const Img = styled.img`
   border-radius: 5px;
 `;
 
-export const ActionAnchor = styled.div``;
+export const ActionAnchor = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
 export const Anchor = styled(Link)``;
+export const Translation = styled.p`
+  background: ${({theme})=>theme.background};
+`;

@@ -1,15 +1,18 @@
 import {FC} from "react";
-import ThemeProvider from "./ThemeProvider.tsx";
-import ReduxProvider from "./ReduxProvider.tsx";
-import RouterProvider from "./RouterProvider.tsx";
-import TranslationProvider from "./TranslationProvider.tsx";
+import ThemeProvider from "./ThemeProvider";
+import ReduxProvider from "./ReduxProvider";
+import TranslationProvider from "./TranslationProvider";
+import AuthProvider from "./AuthProvider.tsx";
+import IChildren from "../interface/IChildren.ts";
 
-const Provider: FC = () => {
+const Provider: FC<IChildren> = ({children}) => {
     return (
         <ReduxProvider>
             <ThemeProvider>
                 <TranslationProvider>
-                    <RouterProvider />
+                    <AuthProvider>
+                        {children}
+                    </AuthProvider>
                 </TranslationProvider>
             </ThemeProvider>
         </ReduxProvider>

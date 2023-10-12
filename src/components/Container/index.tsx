@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Content } from "./styled.ts";
-import IChildren from "../../interface/IChildren.ts";
+import { Content } from "./styled";
+import IChildren from "../../interface/IChildren";
 
 const Container:FC<IChildren> = ({children})=> {
     return (
