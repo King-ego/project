@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 import { ContentPage, Header, Img, ActionAnchor, Anchor, Translation } from "./styled";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
+import {FaGlobe} from "react-icons/fa"
 
 const Index: FC = ()=> {
     const {t} =useTranslation();
@@ -27,7 +28,7 @@ const Index: FC = ()=> {
                 <Img src="/project/images/logo.svg" alt="sfdsdfc"/>
                 <ActionAnchor>
                     <Anchor to="/project/admin/login">{t("home.header.link_login")}</Anchor>
-                    <Translation onClick={()=>translationSwicth()}>{lang}</Translation>
+                    <Translation onClick={()=>translationSwicth()}>{t("language")} <FaGlobe /></Translation>
                 </ActionAnchor>
             </Header>
             <p>{0} - <Link to={"/project/2"}>1</Link></p>

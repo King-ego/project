@@ -1,5 +1,6 @@
 {
     "begin": "hi",
+    "language": "English",
     "home": {
         "header": {
             "link_login": "login"

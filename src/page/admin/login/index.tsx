@@ -8,9 +8,9 @@ const Login: FC = ()=> {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const submit = () => {
+    const submit = async () => {
         dispatch({type: "auth/setToken", payload: "ola"})
-        navigate(0);
+        navigate("/project/admin/app");
 
     }
     return (

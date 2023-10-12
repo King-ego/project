@@ -21,7 +21,7 @@ const LoginRoute = ({children, redirectTo}: IPrivateRoute) => {
 };
 
 
-const RoutersApplication = () => {
+const Routers = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -35,4 +35,4 @@ const RoutersApplication = () => {
     )
 }
 
-export default RoutersApplication;
+export default Routers;

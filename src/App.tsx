@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import Provider from "./provider";
 import Container from "./components/Container";
-import RoutersApplication from "./routes";
+import Routers from "./routes";
 
-const App: FC = () => <Container><Provider><RoutersApplication/></Provider></Container>
+const App: FC = () => <Container><Provider><Routers/></Provider></Container>
 export default App
