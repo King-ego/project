@@ -30,5 +30,9 @@ export const ActionAnchor = styled.div`
 
 export const Anchor = styled(Link)``;
 export const Translation = styled.p`
-  background: ${({theme})=>theme.background};
+  color: ${({theme})=>theme.reverse_color};
+`;
+
+export const Theme = styled.div`
+  cursor: pointer;
 `;

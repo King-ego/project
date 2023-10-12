@@ -2,16 +2,21 @@ import {FC} from "react";
 import Button from "../../components/Button";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import { ContentPage, Header, Img, ActionAnchor, Anchor, Translation } from "./styled";
+import {ContentPage, Header, Img, ActionAnchor, Anchor, Translation, Theme} from "./styled";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {FaGlobe} from "react-icons/fa"
+import {FaGlobe, FaMoon, FaSun} from "react-icons/fa"
 
-const Index: FC = ()=> {
-    const {t} =useTranslation();
-    const {translation: {lang}} =useSelector((state: RootState)=> state);
+const Index: FC = () => {
+    const {t} = useTranslation();
+    const {translation: {lang}, theme: {type}} = useSelector((state: RootState) => state);
     const dispatch = useDispatch();
-    const translationSwicth = () :void => {
+
+    function switchTheme() {
+        dispatch({type: "theme/switchTheme"})
+    }
+
+    const translationSwicth = (): void => {
         const idioma = lang as unknown as "pt-BR" | "en" | "es" | "fr"
         const newIdioma = {
             "pt-BR": "en",
@@ -20,7 +25,7 @@ const Index: FC = ()=> {
             "fr": "pt-BR",
         }
 
-        dispatch({type:"translation/switchLang", payload: newIdioma[idioma]})
+        dispatch({type: "translation/switchLang", payload: newIdioma[idioma]})
     }
     return (
         <ContentPage>
@@ -28,7 +33,12 @@ const Index: FC = ()=> {
                 <Img src="/project/images/logo.svg" alt="sfdsdfc"/>
                 <ActionAnchor>
                     <Anchor to="/project/admin/login">{t("home.header.link_login")}</Anchor>
-                    <Translation onClick={()=>translationSwicth()}>{t("language")} <FaGlobe /></Translation>
+                    <div style={{display: "flex"}}>
+                        <Translation onClick={() => translationSwicth()}>{t("language")} <FaGlobe
+                            className="icon-style"/></Translation>
+                        <Theme onClick={() => switchTheme()}>{type === "dark" ? <FaMoon className="icon-style"/> :
+                            <FaSun className="icon-style"/>}</Theme>
+                    </div>
                 </ActionAnchor>
             </Header>
             <p>{0} - <Link to={"/project/2"}>1</Link></p>

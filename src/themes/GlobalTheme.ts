@@ -4,6 +4,7 @@ const Theme = {
         background: "#000",
         color: "#fff",
         reverse_background: "#fff",
+        reverse_color: "#000",
         button: {
             background: "#fff",
             color: "#000",
@@ -16,6 +17,7 @@ const Theme = {
         background: "#fff",
         color: "#000",
         reverse_background: "#000",
+        reverse_color: "#fff",
         button: {
             background: "#000",
             color: "#fff",

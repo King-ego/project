@@ -65,6 +65,10 @@ const GlobalStyle = createGlobalStyle`
       background-color: #f9f9f9;
     }
   }
+  
+  .icon-style {
+    color: ${({theme})=> theme.background};
+  }
 
 `;
 

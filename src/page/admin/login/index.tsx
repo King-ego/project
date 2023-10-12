@@ -8,7 +8,7 @@ const Login: FC = ()=> {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const submit = async () => {
+    const submit = async ():Promise<void> => {
         dispatch({type: "auth/setToken", payload: "ola"})
         navigate("/project/admin/app");
 
