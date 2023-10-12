@@ -1,5 +1,6 @@
 {
   "begin": "Bonjour",
+  "language": "Français",
   "home": {
     "header": {
       "link_login": "enregistrer"

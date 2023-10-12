@@ -1,5 +1,6 @@
 {
   "begin": "hola",
+  "language": "Español",
   "home": {
     "header": {
       "link_login": "acceso"
