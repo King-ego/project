@@ -6,6 +6,7 @@ import {ContentPage, Header, Img, ActionAnchor, Anchor, Translation, Theme} from
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {FaGlobe, FaMoon, FaSun} from "react-icons/fa"
+import Flex from "../../components/Flex";
 
 const Index: FC = () => {
     const {t} = useTranslation();
@@ -33,12 +34,12 @@ const Index: FC = () => {
                 <Img src="/project/images/logo.svg" alt="sfdsdfc"/>
                 <ActionAnchor>
                     <Anchor to="/project/admin/login">{t("home.header.link_login")}</Anchor>
-                    <div style={{display: "flex"}}>
+                    <Flex>
                         <Translation onClick={() => translationSwicth()}>{t("language")} <FaGlobe
                             className="icon-style"/></Translation>
                         <Theme onClick={() => switchTheme()}>{type === "dark" ? <FaMoon className="icon-style"/> :
                             <FaSun className="icon-style"/>}</Theme>
-                    </div>
+                    </Flex>
                 </ActionAnchor>
             </Header>
             <p>{0} - <Link to={"/project/2"}>1</Link></p>
