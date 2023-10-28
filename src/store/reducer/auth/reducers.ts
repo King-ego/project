@@ -5,11 +5,13 @@ const reducers = {
         const existTheme = localStorage.getItem("token-api");
         state.token = existTheme;
     },
-    setToken: (_: AuthState, action: { payload: string }) => {
+    setToken: (state: AuthState, action: { payload: string }) => {
         localStorage.setItem("token-api", action.payload);
+        state.token = action.payload;
     },
-    deleteToken() {
+    deleteToken(state: AuthState) {
         localStorage.removeItem("token-api")
+        state.token = null;
     }
 }
 

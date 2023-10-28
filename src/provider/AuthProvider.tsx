@@ -3,10 +3,10 @@ import IChildren from "../interface/IChildren";
 import {useDispatch} from "react-redux";
 
 const AuthProvider:FC<IChildren> = ({children}) => {
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     useEffect(() => {
-        dispath({type: "getToken"})
-    }, [dispath]);
+        dispatch({type: "auth/getToken"})
+    }, [dispatch]);
     return <>{children}</>
 }
 

@@ -1,7 +1,9 @@
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+
 import Home from "../page/home";
 import Login from "../page/admin/login";
 import Dashboard from "../page/admin/Dashboard";
+
 import IChildren from "../interface/IChildren";
 
 interface IPrivateRoute extends IChildren {
