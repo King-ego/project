@@ -3,7 +3,8 @@
   "language": "Español",
   "home": {
     "header": {
-      "link_login": "acceso"
+      "link_login": "acceso",
+      "link_app": "entrar"
     }
   }
 }

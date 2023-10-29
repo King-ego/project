@@ -3,7 +3,8 @@
   "language": "Français",
   "home": {
     "header": {
-      "link_login": "enregistrer"
+      "link_login": "enregistrer",
+      "link_app": "entrer"
     }
   }
 }
