@@ -1,19 +1,36 @@
-import {FC} from "react";
-import Button from "../../components/Button";
+import {FC, useState} from "react";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {ContentPage} from "./styled";
-import Header from "../../components/Header";
+import {useQuery} from "@tanstack/react-query"
 
-const Index: FC = () => {
+import Button from "../../components/Button";
+import Header from "../../components/Header";
+import {fetchJsonPlaceholder} from "../../services/testReactQuery";
+import Loading from "../../components/Loading";
+
+
+const Home: FC = () => {
     const {t} = useTranslation();
+    const [id, setId] = useState<number>(0);
+    const {data, isLoading} = useQuery({
+        queryKey: ['respoData', id],
+        queryFn: ()=>fetchJsonPlaceholder(id),
+
+    })
+
     return (
         <ContentPage>
-            <Header />
+            <Header/>
             <p>{0} - <Link to={"/project/2"}>1</Link></p>
-            <Button>{t("begin")}</Button>
+            <Button onClick={()=>setId(20)}>{t("begin")}</Button>
+            <Button onClick={()=>setId(0)}>{t("begin")}</Button>
+            <Loading loading={isLoading} type="blink">
+                {data?.map((ano: { id: number, title: string }) => <div
+                    key={ano.id}>{ano.title}</div>)}
+            </Loading>
         </ContentPage>
     )
 }
 
-export default Index;
+export default Home;

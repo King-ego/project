@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {AlignItems,JustifyContent, FlexDirection} from "./index"
+import {AlignItems,JustifyContent, FlexDirection} from "./Flex"
 
 interface IFlex {
     ai?: AlignItems;
