@@ -5,9 +5,13 @@ import {Pulse, Spinner, Blink, Dot} from "./styled";
 interface ILoadingProps extends IChildren {
     loading: boolean;
     type?: "spinner" | "pulse" | "blink";
+    isError?: boolean;
 }
 
-const Loading:FC<ILoadingProps> = ({children, loading, type}) => {
+const Loading:FC<ILoadingProps> = ({children, loading, type, isError}) => {
+    if (isError) {
+        return (<div>{"Ocorreu um error na busca"}</div>)
+    }
     if(loading) {
         if (type === "pulse") {
             return <Pulse/>

@@ -6,14 +6,13 @@ import {requestUsers} from "../../../services/users/get";
 import Sidebar from "../../../template/Sidebar";
 
 const Users: FC = () => {
-    const {data, isLoading} = useQuery({
-        queryKey: ['respoUsers'],
+    const {data, isLoading, isError,} = useQuery({
+        queryKey: ['responseUsers'],
         queryFn: requestUsers,
-
     })
     return (
         <Sidebar>
-            <Loading loading={isLoading} type="blink">
+            <Loading loading={isLoading} type="blink" isError={isError}>
                 {data?.map(({id, name, email}) => <div key={id}>
                     <p>{name}</p>
                     <p>{email}</p>
