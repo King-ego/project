@@ -45,3 +45,5 @@ export type FlexDirection =
     | "initial"
     | "revert"
     | "unset";
+
+export type Gap = number

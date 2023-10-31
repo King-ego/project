@@ -2,7 +2,7 @@ import { FC } from "react";
 import {useQuery} from "@tanstack/react-query";
 
 import Loading from "../../../components/Loading";
-import {requestUsers} from "../../../services/users/get";
+import {requestUsers} from "../../../services/users";
 import Sidebar from "../../../template/Sidebar";
 
 const Users: FC = () => {
@@ -12,7 +12,7 @@ const Users: FC = () => {
     })
     return (
         <Sidebar>
-            <Loading loading={isLoading} type="dot" isError={isError} scale={2}>
+            <Loading loading={isLoading} type="dot" isError={isError}>
                 {data?.map(({id, name, email}) => <div key={id}>
                     <p>{name}</p>
                     <p>{email}</p>
