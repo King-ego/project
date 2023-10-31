@@ -12,7 +12,7 @@ const Users: FC = () => {
     })
     return (
         <Sidebar>
-            <Loading loading={isLoading} type="blink" isError={isError}>
+            <Loading loading={isLoading} type="dot" isError={isError} scale={2}>
                 {data?.map(({id, name, email}) => <div key={id}>
                     <p>{name}</p>
                     <p>{email}</p>
