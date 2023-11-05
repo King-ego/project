@@ -54,7 +54,7 @@ const Login: FC = ()=> {
                                 type="email"
                                 placeholder="email@email.com"
                                 error={props.errors.email}
-                                blur={props.touched.email}
+                                touched={props.touched.email}
                             />
                             <Input
                                 id="password"
@@ -62,7 +62,7 @@ const Login: FC = ()=> {
                                 type="password"
                                 placeholder="Senha"
                                 error={props.errors.password}
-                                blur={props.touched.password}
+                                touched={props.touched.password}
                             />
                             <Button type="submit" onClick={() => console.log({props})}>Entrar</Button>
                         </Flex>

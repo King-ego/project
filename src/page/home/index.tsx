@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 const Home: FC = () => {
     const {t} = useTranslation();
 
+
     return (
         <ContentPage>
             <Header/>

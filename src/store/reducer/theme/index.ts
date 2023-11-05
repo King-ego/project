@@ -9,6 +9,6 @@ const theme = createSlice({
     reducers,
 });
 
-/*export const {switchTheme} = index.actions;*/
+/*export const {switchTheme} = index.tsx.actions;*/
 
 export default theme.reducer;

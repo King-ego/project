@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, useState} from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { ListUsers } from "../../../services/users";
@@ -8,8 +8,11 @@ import Loading from "../../../components/Loading";
 import Sidebar from "../../../template/Sidebar";
 import ImageFromApiComponent from "../../../components/ImageFromApiComponent";
 import Flex from "../../../components/Flex";
+import Button from "../../../components/Button";
+import CreateUserModal from "./CreateUserModal";
 
 const Users: FC = () => {
+    const [visible, setVisible] = useState(false);
     const {data, isLoading, isError} = useQuery({
         queryKey: ['responseUsers'],
         queryFn: ListUsers,
@@ -18,6 +21,12 @@ const Users: FC = () => {
         queryKey: ['ListImages'],
         queryFn: ListImage,
     })
+
+
+    function closeModal(){
+        setVisible(false);
+    }
+
     return (
         <Sidebar>
             <Loading loading={isLoading} type="dot" isError={isError}>
@@ -34,6 +43,8 @@ const Users: FC = () => {
                         </div>)}
                 </Flex>
             </Loading>
+            <Button onClick={()=>setVisible(true)}>Open Modal</Button>
+            <CreateUserModal closeModal={closeModal} visibleModal={visible} />
         </Sidebar>)
 }
 

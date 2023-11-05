@@ -1,14 +1,18 @@
-import {InputField} from "./styled"
+import {InputField, MessageError} from "./styled"
 import {FC, InputHTMLAttributes} from "react";
 
 interface IPropsInput extends InputHTMLAttributes<HTMLInputElement>{
     error?: string;
-    blur?: boolean
+    touched?: boolean
 }
 
-const Input: FC<IPropsInput> = ({ error, blur, ...rest }) => {
-    return (<><InputField error={!!error && blur} {...rest} />
-        {error && blur ? <>{error}</>: null}</>)
+const Input: FC<IPropsInput> = ({ error, touched, ...rest }) => {
+    return (
+        <>
+            <InputField error={!!error && touched} {...rest} />
+            {error && touched ? <MessageError>{error}</MessageError>: null}
+        </>
+    )
 }
 
 export default Input;
