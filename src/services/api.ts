@@ -11,4 +11,15 @@ const api = axios.create({
     }
 })
 
+api.interceptors.response.use((resp) => {
+    console.log(resp)
+    return resp
+}, (err) => {
+    console.log({err: err.response.status})
+    if(err.response.status === 403) {
+        localStorage.removeItem("token-api")
+    }
+    return err
+})
+
 export default api;

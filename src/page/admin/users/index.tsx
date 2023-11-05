@@ -1,14 +1,21 @@
-import { FC } from "react";
+import {FC} from "react";
 import {useQuery} from "@tanstack/react-query";
 
 import Loading from "../../../components/Loading";
 import {requestUsers} from "../../../services/users";
 import Sidebar from "../../../template/Sidebar";
+import {ListImage} from "../../../services/images";
+import ImageFromApiComponent from "../../../components/ImageFromApiComponent";
+import Flex from "../../../components/Flex";
 
 const Users: FC = () => {
     const {data, isLoading, isError,} = useQuery({
         queryKey: ['responseUsers'],
         queryFn: requestUsers,
+    })
+    const {data: dataImage, isLoading: isLoadingImage, isError: isErrorImage} = useQuery({
+        queryKey: ['ListImages'],
+        queryFn: ListImage,
     })
     return (
         <Sidebar>
@@ -17,6 +24,14 @@ const Users: FC = () => {
                     <p>{name}</p>
                     <p>{email}</p>
                 </div>)}
+            </Loading>
+            <Loading loading={isLoadingImage} type={"spinner"} isError={isErrorImage}>
+                <Flex flexDirection="column" gap={12}>
+                    {dataImage?.map(({url, id, })=>
+                        <div style={{background: "black", width: "100%", maxWidth: "300px"}} key={id}>
+                            <ImageFromApiComponent fileName={url} />
+                        </div>)}
+                </Flex>
             </Loading>
         </Sidebar>)
 }

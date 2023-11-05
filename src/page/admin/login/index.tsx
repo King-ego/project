@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
-import validete from "./validete";
+import validate from "./validete";
 
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
@@ -24,7 +24,7 @@ const Login: FC = ()=> {
         return await createUser(value)
     },[])
     const submit = async (value: IFormUser):Promise<void> => {
-        const userSchema = Yup.object(validete)
+        const userSchema = Yup.object(validate)
 
         await userSchema.validate(value)
 
@@ -44,7 +44,7 @@ const Login: FC = ()=> {
                 <Formik initialValues={{
                     password: "",
                     email: ""
-                }}  validationSchema={Yup.object().shape(validete)} onSubmit={submit}>
+                }}  validationSchema={Yup.object().shape(validate)} onSubmit={submit}>
                     {(props)=>(
                     <Form>
                         <Flex flexDirection="column" gap={5}>

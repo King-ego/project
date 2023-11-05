@@ -7,7 +7,7 @@ interface IPropsInput extends InputHTMLAttributes<HTMLInputElement>{
 }
 
 const Input: FC<IPropsInput> = ({ error, blur, ...rest }) => {
-    return (<><InputField error={!!error} {...rest} />
+    return (<><InputField error={!!error && blur} {...rest} />
         {error && blur ? <>{error}</>: null}</>)
 }
 
