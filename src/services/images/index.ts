@@ -1,5 +1,5 @@
 import api from "../api";
-import {IImage} from "../../interface/IImage";
+import { IImage } from "../../interface/IImage";
 
 export const ListImage = async ():Promise<IImage[]> => {
     const images = await api.get("upload/images")
@@ -7,7 +7,7 @@ export const ListImage = async ():Promise<IImage[]> => {
     return images.data;
 }
 
-export const GetAWSImage = async (filename: string) => {
+export const GetAWSImage = async (filename: string): Promise<BufferSource> => {
     const image =  await api.get("upload/imagesOnly", {
         params: {
             filename,
@@ -15,5 +15,5 @@ export const GetAWSImage = async (filename: string) => {
         responseType: "arraybuffer"
     })
 
-    return image;
+    return image.data;
 }

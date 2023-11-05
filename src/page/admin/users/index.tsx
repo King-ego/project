@@ -1,17 +1,18 @@
-import {FC} from "react";
-import {useQuery} from "@tanstack/react-query";
+import { FC } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+import { ListUsers } from "../../../services/users";
+import { ListImage } from "../../../services/images";
 
 import Loading from "../../../components/Loading";
-import {requestUsers} from "../../../services/users";
 import Sidebar from "../../../template/Sidebar";
-import {ListImage} from "../../../services/images";
 import ImageFromApiComponent from "../../../components/ImageFromApiComponent";
 import Flex from "../../../components/Flex";
 
 const Users: FC = () => {
-    const {data, isLoading, isError,} = useQuery({
+    const {data, isLoading, isError} = useQuery({
         queryKey: ['responseUsers'],
-        queryFn: requestUsers,
+        queryFn: ListUsers,
     })
     const {data: dataImage, isLoading: isLoadingImage, isError: isErrorImage} = useQuery({
         queryKey: ['ListImages'],

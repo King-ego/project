@@ -9,9 +9,9 @@ interface IImageFromApiComponent {
 const ImageFromApiComponent:FC<IImageFromApiComponent> = ({ fileName }) => {
     const [image, setImage] = useState<HTMLImageElement | null>(null);
 
-    async function arrayBufferToImage(filename: string) {
+    async function createImage(filename: string) {
         const Buffer = await GetAWSImage(filename)
-        const blob = new Blob([Buffer.data], { type: "image" });
+        const blob = new Blob([Buffer], { type: "image" });
         const url = URL.createObjectURL(blob);
         const img = new Image();
         img.src = url;
@@ -21,7 +21,7 @@ const ImageFromApiComponent:FC<IImageFromApiComponent> = ({ fileName }) => {
 
     useEffect(() => {
         let img =  new Image();
-        arrayBufferToImage(fileName).then(res=> img = res);
+        createImage(fileName).then(res=> img = res);
        return URL.revokeObjectURL(img.src)
     }, [fileName]);
 

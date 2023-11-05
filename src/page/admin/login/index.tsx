@@ -1,14 +1,14 @@
 import {FC, useCallback} from "react";
 import { useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import validate from "./validete";
 
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
-import {createUser} from "../../../services/users";
-import {Container, Content} from "./styled";
+import { CreateUser } from "../../../services/users";
+import { Container, Content} from "./styled";
 import Flex from "../../../components/Flex";
 
 interface IFormUser {
@@ -20,8 +20,8 @@ const Login: FC = ()=> {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const requestUser = useCallback(async (value: IFormUser) => {
-        return await createUser(value)
+    const createUser = useCallback(async (value: IFormUser) => {
+        return await CreateUser(value)
     },[])
     const submit = async (value: IFormUser):Promise<void> => {
         const userSchema = Yup.object(validate)
@@ -30,8 +30,8 @@ const Login: FC = ()=> {
 
         console.log({value})
         try {
-            const data = await requestUser(value);
-            dispatch({type: "auth/setToken", payload: data.token})
+            const user = await createUser(value);
+            dispatch({type: "auth/setToken", payload: user.token})
             navigate("/project/admin/app");
         } catch (err) {
             console.log(err)
