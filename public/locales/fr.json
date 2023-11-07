@@ -6,5 +6,10 @@
       "link_login": "enregistrer",
       "link_app": "entrer"
     }
+  },
+  "admin": {
+    "users": {
+      "create_user": "Créer un utilisateur"
+    }
   }
 }

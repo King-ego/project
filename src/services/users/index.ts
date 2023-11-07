@@ -1,14 +1,47 @@
 import api from "../api";
-import {IUsers, ICreateUser, IResponseSession} from "../../interface/IUsers";
+import {isAxiosError, AxiosError, AxiosResponse} from "axios";
+import {IUsers, ICreateLogin, IResponseSession, ICreateUser} from "../../interface/IUsers";
+import GenerateErrorToast from "../GenerateErrorToast";
 
-export const ListUsers = async (): Promise<IUsers[]> => {
-        await new Promise((resolve) => setTimeout(resolve, 3000))
-
+export const ListUsers = async (): Promise<IUsers[] | void> => {
+    /*await new Promise((resolve) => setTimeout(resolve, 3000))*/
+    try {
         const users = await api.get("users");
-        return users.data;
+        if(isAxiosError(users)){
+            const err = (users as AxiosError).response as AxiosResponse;
+            GenerateErrorToast(err);
+        }
+        return users.data as IUsers[];
+    } catch {
+        return;
+    }
+
+
 }
 
-export const CreateUser = async (payload:ICreateUser): Promise<IResponseSession> => {
+export const CreateLogin = async (payload: ICreateLogin): Promise<IResponseSession | void> => {
+    try {
         const users = await api.post("session", payload);
-        return users.data;
+        if(isAxiosError(users)){
+            const err = (users as AxiosError).response as AxiosResponse;
+            GenerateErrorToast(err);
+        }
+        return users.data as IResponseSession;
+    } catch {
+        return;
+    }
+}
+
+export const CreateUser = async (payload: ICreateUser): Promise<IUsers | void> => {
+    try {
+        const users = await api.post("users", payload);
+        if(isAxiosError(users)){
+            const err = (users as AxiosError).response as AxiosResponse;
+            GenerateErrorToast(err);
+        }
+        return users.data as IUsers;
+    } catch (err){
+        return;
+    }
+
 }

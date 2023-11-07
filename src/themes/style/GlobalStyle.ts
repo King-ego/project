@@ -69,6 +69,14 @@ const GlobalStyle = createGlobalStyle`
   .icon-style {
     color: ${({theme})=> theme.background};
   }
+  
+  .glass_blur {
+    background: transparent;
+    backdrop-filter: blur( 1px );
+    -webkit-backdrop-filter: blur( 1px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  }
 
 `;
 

@@ -1,13 +1,18 @@
-import {memo, FC, useCallback} from "react";
+import {memo, FC, useCallback, useState} from "react";
 import Modal from "../../../../components/Modal";
-import {Form, Formik} from "formik";
+import {Form, Formik, FormikHelpers} from "formik";
 import * as Yup from "yup";
 import validate from "./validate";
 import Input from "../../../../components/Input";
 import Flex from "../../../../components/Flex";
+import {CreateUser} from "../../../../services/users";
+import {IUsers} from "../../../../interface/IUsers.ts";
+import statusRole from "../../../../utils/statusRole.ts";
+import Loading from "../../../../components/Loading";
+import {useTranslation} from "react-i18next";
 
 interface ICreateUserModal {
-    closeModal: () => void
+    closeModal: (user?:IUsers) => void
     visibleModal: boolean
 }
 
@@ -18,25 +23,50 @@ interface IPropsSubmit {
     name: string;
 }
 
+interface IDataSubmit {
+    formik: FormikHelpers<IPropsSubmit>
+    data: IPropsSubmit
+}
+
 const CreateUserModal: FC<ICreateUserModal> = memo(({visibleModal, closeModal}) => {
-    const submit = useCallback(async (data: IPropsSubmit) => {
+    const [status, setStatus] = useState(statusRole.INITIAL);
+
+    const {t} = useTranslation();
+    async function createUser(data: IPropsSubmit) {
+        setStatus(statusRole.LOADING)
+        const user = await CreateUser(data);
+        if (user) {
+            setStatus(statusRole.SUCCESS)
+            return user;
+        }
+        setStatus(statusRole.ERROR)
+    }
+
+    const submit = useCallback(async ({data, formik}: IDataSubmit) => {
         const userSchema = Yup.object(validate)
 
         await userSchema.validate(data)
-
-        console.log(data)
-    }, [])
+        const user = await createUser(data)
+        if(user) {
+            formik.resetForm()
+            closeModal(user);
+        }
+    }, [closeModal])
     return (
         <Modal.Container visible={visibleModal}>
             <Modal.Content>
-                <Modal.Header title="Create User" close={closeModal}/>
-
+                <Modal.Header title={t("admin.users.create_user")} close={()=>closeModal()}/>
                 <Formik initialValues={{
                     name: "",
                     password: "",
                     email: "",
                     confirm_password: ""
-                }} onSubmit={submit} validationSchema={Yup.object().shape(validate)}>
+                }}
+                        onSubmit={
+                            (data, formik) =>
+                            submit({data, formik})
+                         }
+                        validationSchema={Yup.object().shape(validate)}>
                     {({touched, errors,}) => <Form>
                         <Modal.Context>
                             <Flex flexDirection="column" gap={8}>
@@ -52,8 +82,10 @@ const CreateUserModal: FC<ICreateUserModal> = memo(({visibleModal, closeModal}) 
                             </Flex>
                         </Modal.Context>
                         <Modal.Actions>
-                            <Modal.Action onClick={closeModal}>Cancelar</Modal.Action>
-                            <Modal.Action type="submit">Salvar</Modal.Action>
+                            <Modal.Action onClick={()=>closeModal()}>Cancelar</Modal.Action>
+                            <Modal.Action type="submit">
+                                <Loading loading={status === statusRole.LOADING}>Salvar</Loading>
+                            </Modal.Action>
                         </Modal.Actions>
                     </Form>
                     }

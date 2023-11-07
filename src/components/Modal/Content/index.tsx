@@ -3,7 +3,7 @@ import IChildren from "../../../interface/IChildren";
 import {ModalContent} from "./styled";
 
 const Content:FC<IChildren> = ({children}) => {
-    return <ModalContent>{children}</ModalContent>
+    return <ModalContent className="glass_blur">{children}</ModalContent>
 }
 
 export default Content;

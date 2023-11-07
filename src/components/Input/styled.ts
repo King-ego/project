@@ -10,6 +10,7 @@ export const InputField = styled(Field)<IInput>`
   padding-left: 5px;
   width: 100%;
   background: ${({theme})=> theme.reverse_background};
+  color: ${({theme})=> theme.reverse_color};
   border: ${({error})=> error ? "1px solid red" : "none"};
 `;
 

@@ -6,5 +6,10 @@
       "link_login": "acceso",
       "link_app": "entrar"
     }
+  },
+  "admin": {
+    "users": {
+      "create_user": "Crear Usuario"
+    }
   }
 }
