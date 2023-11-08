@@ -83,7 +83,7 @@ const CreateUserModal: FC<ICreateUserModal> = memo(({visibleModal, closeModal}) 
                         </Modal.Context>
                         <Modal.Actions>
                             <Modal.Action onClick={()=>closeModal()}>Cancelar</Modal.Action>
-                            <Modal.Action type="submit">
+                            <Modal.Action type="submit" bg="success">
                                 <Loading loading={status === statusRole.LOADING}>Salvar</Loading>
                             </Modal.Action>
                         </Modal.Actions>

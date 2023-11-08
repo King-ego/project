@@ -8,10 +8,16 @@ const Theme = {
         button: {
             background: "#fff",
             color: "#000",
+            default: {
+                initial: "#ccc",
+                success: "#58ff58",
+                warning: "#efe433",
+                error: "#ff2424",
+            }
         },
         link: {
             color: "#646cff"
-        }
+        },
     },
     light: {
         background: "#fff",
@@ -21,6 +27,12 @@ const Theme = {
         button: {
             background: "#000",
             color: "#fff",
+            default: {
+                initial: "#ccc",
+                success: "#58ff58",
+                warning: "#efe433",
+                error: "#ff2424",
+            }
         },
         link: {
             color: "#0d1dfd"

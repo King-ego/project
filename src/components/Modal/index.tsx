@@ -5,7 +5,16 @@ import Context from "./Context";
 import Action from "./Action";
 import Actions from "./Actions";
 
-export default {
+type IExportModal = {
+    Container: typeof Container;
+    Content: typeof Content;
+    Header: typeof Header
+    Context: typeof Context;
+    Actions: typeof Actions;
+    Action: typeof Action;
+}
+
+const components: IExportModal = {
     Container,
     Content,
     Header,
@@ -13,3 +22,5 @@ export default {
     Actions,
     Action,
 }
+
+export default components
