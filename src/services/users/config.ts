@@ -5,3 +5,7 @@ export const configCreateUser = [{
 export const configListUser = [
     {status: 403, message: "Token Inválido"}
 ]
+
+export const configCreateLogin = [
+    {status: 401, message: "Credenciais incorretas"}
+]

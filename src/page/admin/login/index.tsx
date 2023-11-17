@@ -12,6 +12,7 @@ import {Container, Content} from "./styled";
 import Flex from "../../../components/Flex";
 import statusRole from "../../../utils/statusRole.ts";
 import Loading from "../../../components/Loading";
+import {DefaultError} from "../../../services/GenerateErrorToast";
 
 interface IFormUser {
     email: string;
@@ -23,22 +24,26 @@ const Login: FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const createLogin = useCallback(async (value: IFormUser) => {
-        return await CreateLogin(value)
+        setStatusLogin(statusRole.LOADING)
+        const login = await CreateLogin(value);
+        if (login) {
+            setStatusLogin(statusRole.SUCCESS);
+            return login;
+        }
+
+        setStatusLogin(statusRole.ERROR);
+        DefaultError()
     }, [])
     const submit = async (value: IFormUser): Promise<void> => {
         const userSchema = Yup.object(validate)
 
         await userSchema.validate(value)
-        setStatusLogin(statusRole.LOADING)
         const login = await createLogin(value);
         if (login) {
             dispatch({type: "auth/setToken", payload: login.token});
             navigate("/project/admin/app");
-            setStatusLogin(statusRole.SUCCESS);
             return;
         }
-
-        setStatusLogin(statusRole.ERROR);
 
     }
     return (

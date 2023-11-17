@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from "react";
 
-import { ListUsers } from "../../../services/users";
-import { ListImage } from "../../../services/images";
+import {ListUsers} from "../../../services/users";
+import {ListImage} from "../../../services/images";
 
 import Loading from "../../../components/Loading";
 import Sidebar from "../../../template/Sidebar";
@@ -12,6 +12,8 @@ import CreateUserModal from "./CreateUserModal";
 import statusRole from "../../../utils/statusRole.ts";
 import {IUsers} from "../../../interface/IUsers.ts";
 import {IImage} from "../../../interface/IImage.ts";
+import GenerateSuccessToast from "../../../services/GenerateSuccessToast";
+import {DefaultError} from "../../../services/GenerateErrorToast";
 
 const Users: FC = () => {
     const [statusUser, setStatusUser] = useState(statusRole.INITIAL);
@@ -19,40 +21,48 @@ const Users: FC = () => {
     const [visible, setVisible] = useState(false);
     const [users, setUsers] = useState<IUsers[]>([]);
     const [images, setImages] = useState<IImage[]>([]);
-    async function listUser(){
+
+    async function listUser() {
         setStatusUser(statusRole.LOADING)
         const users = await ListUsers();
         if (users) {
             setUsers(users)
             setStatusUser(statusRole.SUCCESS);
+            const message = "Usuários encontrados com sucesso";
+            GenerateSuccessToast({message})
             return;
         }
 
         setStatusUser(statusRole.ERROR);
+        DefaultError()
     }
-    async function listImage(){
+
+    async function listImage() {
         setStatusImage(statusRole.LOADING)
         const images = await ListImage();
         if (images) {
             setImages(images)
             setStatusImage(statusRole.SUCCESS);
+            const message = "Images encontradas com sucesso";
+            GenerateSuccessToast({message})
             return;
         }
 
         setStatusImage(statusRole.ERROR);
+        DefaultError()
     }
 
     useEffect(() => {
-        listUser().then(()=>console.log("ok"))
+        listUser().then(() => console.log("ok"))
     }, []);
     useEffect(() => {
-        listImage().then(()=>console.log("ok"))
+        listImage().then(() => console.log("ok"))
     }, []);
 
 
-    function closeModal(user?:IUsers){
+    function closeModal(user?: IUsers) {
         setVisible(false);
-        if(user) {
+        if (user) {
             setUsers(usr => [...usr, user])
         }
     }
@@ -67,14 +77,14 @@ const Users: FC = () => {
             </Loading>
             <Loading loading={statusImage === statusRole.LOADING} type="dot" isError={statusImage === statusRole.ERROR}>
                 <Flex flexDirection="column" gap={12}>
-                    {images?.map(({url, id, })=>
+                    {images?.map(({url, id,}) =>
                         <div style={{background: "black", width: "100%", maxWidth: "300px"}} key={id}>
-                            <ImageFromApiComponent fileName={url} />
+                            <ImageFromApiComponent fileName={url}/>
                         </div>)}
                 </Flex>
             </Loading>
-            <Button onClick={()=>setVisible(true)}>Open Modal</Button>
-            <CreateUserModal closeModal={closeModal} visibleModal={visible} />
+            <Button onClick={() => setVisible(true)}>Open Modal</Button>
+            <CreateUserModal closeModal={closeModal} visibleModal={visible}/>
         </Sidebar>)
 }
 

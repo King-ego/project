@@ -2,7 +2,8 @@ import api from "../api";
 import {isAxiosError, AxiosError, AxiosResponse} from "axios";
 import {IUsers, ICreateLogin, IResponseSession, ICreateUser} from "../../interface/IUsers";
 import GenerateErrorToast from "../GenerateErrorToast";
-import {configCreateUser, configListUser} from "./config";
+import {configCreateLogin, configCreateUser, configListUser} from "./config";
+
 
 export const ListUsers = async (): Promise<IUsers[] | void> => {
     /*await new Promise((resolve) => setTimeout(resolve, 3000))*/
@@ -25,7 +26,7 @@ export const CreateLogin = async (payload: ICreateLogin): Promise<IResponseSessi
         const users = await api.post("session", payload);
         if(isAxiosError(users)){
             const err = (users as AxiosError).response as AxiosResponse;
-            GenerateErrorToast({err});
+            GenerateErrorToast({err, config: configCreateLogin});
         }
         return users.data as IResponseSession;
     } catch {
