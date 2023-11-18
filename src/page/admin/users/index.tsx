@@ -1,7 +1,7 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useCallback, useEffect, useState} from "react";
 
-import {ListUsers} from "../../../services/users";
-import {ListImage} from "../../../services/images";
+import UsersGateway from "../../../services/users";
+import ImagesGateway from "../../../services/images";
 
 import Loading from "../../../components/Loading";
 import Sidebar from "../../../template/Sidebar";
@@ -22,9 +22,9 @@ const Users: FC = () => {
     const [users, setUsers] = useState<IUsers[]>([]);
     const [images, setImages] = useState<IImage[]>([]);
 
-    async function listUser() {
+    const listUser = useCallback(async () => {
         setStatusUser(statusRole.LOADING)
-        const users = await ListUsers();
+        const users = await UsersGateway().ListUsers();
         if (users) {
             setUsers(users)
             setStatusUser(statusRole.SUCCESS);
@@ -35,11 +35,11 @@ const Users: FC = () => {
 
         setStatusUser(statusRole.ERROR);
         DefaultError()
-    }
+    },[])
 
-    async function listImage() {
+    const listImage = useCallback(async () => {
         setStatusImage(statusRole.LOADING)
-        const images = await ListImage();
+        const images = await ImagesGateway().ListImage();
         if (images) {
             setImages(images)
             setStatusImage(statusRole.SUCCESS);
@@ -50,7 +50,7 @@ const Users: FC = () => {
 
         setStatusImage(statusRole.ERROR);
         DefaultError()
-    }
+    },[])
 
     useEffect(() => {
         listUser().then(() => console.log("ok"))
@@ -60,12 +60,12 @@ const Users: FC = () => {
     }, []);
 
 
-    function closeModal(user?: IUsers) {
+    const closeModal = useCallback((user?: IUsers) => {
         setVisible(false);
         if (user) {
             setUsers(usr => [...usr, user])
         }
-    }
+    },[])
 
     return (
         <Sidebar>

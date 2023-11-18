@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import validate from "./validate";
 import Input from "../../../../components/Input";
 import Flex from "../../../../components/Flex";
-import {CreateUser} from "../../../../services/users";
+import UsersGateway from "../../../../services/users";
 import {IUsers} from "../../../../interface/IUsers.ts";
 import statusRole from "../../../../utils/statusRole.ts";
 import Loading from "../../../../components/Loading";
@@ -34,7 +34,7 @@ const CreateUserModal: FC<ICreateUserModal> = memo(({visibleModal, closeModal}) 
     const {t} = useTranslation();
     async function createUser(data: IPropsSubmit) {
         setStatus(statusRole.LOADING)
-        const user = await CreateUser(data);
+        const user = await UsersGateway().CreateUser(data);
         if (user) {
             setStatus(statusRole.SUCCESS)
             return user;

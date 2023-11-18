@@ -7,7 +7,7 @@ import validate from "./validete";
 
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
-import {CreateLogin} from "../../../services/users";
+import UsersGateway from "../../../services/users";
 import {Container, Content} from "./styled";
 import Flex from "../../../components/Flex";
 import statusRole from "../../../utils/statusRole.ts";
@@ -22,10 +22,11 @@ interface IFormUser {
 const Login: FC = () => {
     const [statusLogin, setStatusLogin] = useState(statusRole.INITIAL)
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     const createLogin = useCallback(async (value: IFormUser) => {
         setStatusLogin(statusRole.LOADING)
-        const login = await CreateLogin(value);
+        const login = await UsersGateway().CreateLogin(value);
         if (login) {
             setStatusLogin(statusRole.SUCCESS);
             return login;
@@ -34,7 +35,7 @@ const Login: FC = () => {
         setStatusLogin(statusRole.ERROR);
         DefaultError()
     }, [])
-    const submit = async (value: IFormUser): Promise<void> => {
+    const submit = useCallback(async (value: IFormUser): Promise<void> => {
         const userSchema = Yup.object(validate)
 
         await userSchema.validate(value)
@@ -45,7 +46,7 @@ const Login: FC = () => {
             return;
         }
 
-    }
+    },[])
     return (
         <Container>
             <Content>
